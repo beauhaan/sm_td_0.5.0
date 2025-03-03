@@ -10,11 +10,10 @@ enum custom_layer {
 };
 
 enum custom_keycodes {
-    SMTD_KEYCODES_BEGIN = SAFE_RANGE,
-    CKC_A, CKC_S, CKC_D, CKC_F, CKC_J, CKC_K, CKC_L, CKC_SCLN,
+    CKC_A = SAFE_RANGE,
+    CKC_S, CKC_D, CKC_F, CKC_J, CKC_K, CKC_L, CKC_SCLN,
     CKC_LB,  // LOPT(KC_BSPC)
     CKC_LD,  // LOPT(KC_DEL)
-    SMTD_KEYCODES_END,
 };
 
 #include "sm_td.h"
@@ -164,19 +163,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
     switch (keycode) {
         // Mod-tap behaviors for modifiers
-        SMTD_MT(CKC_S, KC_S, KC_LCTL)
-        SMTD_MT(CKC_D, KC_D, KC_LOPT)
-        SMTD_MT(CKC_F, KC_F, KC_LGUI)
-        SMTD_MT(CKC_J, KC_J, KC_RGUI)
-        SMTD_MT(CKC_K, KC_K, KC_ROPT)
-        SMTD_MT(CKC_L, KC_L, KC_RCTL)
+        SMTD_MT_ON_MKEY(CKC_S, KC_S, KC_LCTL)
+        SMTD_MT_ON_MKEY(CKC_D, KC_D, KC_LOPT)
+        SMTD_MT_ON_MKEY(CKC_F, KC_F, KC_LGUI)
+        SMTD_MT_ON_MKEY(CKC_J, KC_J, KC_RGUI)
+        SMTD_MT_ON_MKEY(CKC_K, KC_K, KC_ROPT)
+        SMTD_MT_ON_MKEY(CKC_L, KC_L, KC_RCTL)
         
         // Layer-tap behaviors for _NAV layer
-        SMTD_LT(CKC_A, KC_A, _NAV)
-        SMTD_LT(CKC_SCLN, KC_SCLN, _NAV)
+        SMTD_LT_ON_MKEY(CKC_A, KC_A, _NAV)
+        SMTD_LT_ON_MKEY(CKC_SCLN, KC_SCLN, _NAV)
         
         // Layer-tap behaviors for _BOOT layer with LOPT combos
-        SMTD_LT(CKC_LB, LOPT(KC_BSPC), _BOOT)
-        SMTD_LT(CKC_LD, LOPT(KC_DEL), _BOOT)
+        SMTD_LT_ON_MKEY(CKC_LB, LOPT(KC_BSPC), _BOOT)
+        SMTD_LT_ON_MKEY(CKC_LD, LOPT(KC_DEL), _BOOT)
     }
 }
